@@ -1,51 +1,31 @@
-from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
-from django.shortcuts import render
+TemplateDoesNotExist at /signup/
+core/signup.html
+Request Method:	GET
+Request URL:	http://127.0.0.1:8000/signup/
+Django Version:	5.0.6
+Exception Type:	TemplateDoesNotExist
+Exception Value:	
+core/signup.html
+Exception Location:	/home/sasho/.local/lib/python3.10/site-packages/django/template/loader.py, line 19, in get_template
+Raised during:	core.views.signup
+Python Executable:	/usr/bin/python3
+Python Version:	3.10.12
+Python Path:	
+['/home/sasho/dev/puddle/puddle',
+ '/usr/lib/python310.zip',
+ '/usr/lib/python3.10',
+ '/usr/lib/python3.10/lib-dynload',
+ '/home/sasho/.local/lib/python3.10/site-packages',
+ '/usr/local/lib/python3.10/dist-packages',
+ '/usr/lib/python3/dist-packages',
+ '/usr/lib/python3.10/dist-packages']
+Server time:	Mon, 03 Jun 2024 07:45:33 +0000
+Template-loader postmortem
+Django tried loading these templates, in this order:
 
-from item.models import Category, Item
-from .forms import SignupForm
+Using engine django:
 
-class SignupForm(UserCreationForm):
-    class Meta:
-        model = User
-        fields = ('username', 'email', 'password1', 'password2')
-
-def index(request):
-    items = Item.objects.filter(is_sold=False)[:6]
-    categories = Category.objects.all()
-    return render(request, 'core/index.html', {
-        'categories': categories,
-        'items': items,
-    })
-
-def contact(request):
-    return render(request, 'core/contact.html')
-
-def signup(request):
-    form = SignupForm()
-    return render(request, 'core/signup.html', {
-        'form': form,
-    })
-
-
-from django.urls import path
-from . import views
-
-urlpatterns = [
-    path('', views.index, name='index'),
-    path('contact/', views.contact, name='contact'),
-    path('signup/', views.signup, name='signup'),
-]
-
-
-
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
-
-class SignupForm(UserCreationForm):
-    class Meta:
-        model = User
-        fields = ('username', 'email', 'password1', 'password2')
-
-
+django.template.loaders.app_directories.Loader: /home/sasho/.local/lib/python3.10/site-packages/django/contrib/admin/templates/core/signup.html (Source does not exist)
+django.template.loaders.app_directories.Loader: /home/sasho/.local/lib/python3.10/site-packages/django/contrib/auth/templates/core/signup.html (Source does not exist)
+django.template.loaders.app_directories.Loader: /home/sasho/dev/puddle/puddle/core/templates/core/signup.html (Source does not exist)
+django.template.loaders.app_directories.Loader: /home/sasho/dev/puddle/puddle/item/templates/core/signup.html (Source does not exist)
