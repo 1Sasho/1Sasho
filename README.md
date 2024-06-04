@@ -1,10 +1,28 @@
-{% extends 'core/base.html' %}
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
-{% block title %}Sign up{% endblock %}
+class SignupForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password1', 'password2')
 
-{% block content %}
-<div class"w-1/2 my-6 mx-auto p-6 bg-gray-200 rounded-xl">
-    <h1 class="mb-6 text-3x1">Sign up</h1>
+    username = forms.CharField(widget=forms.TextInput(attrs={
+        'placeholder': 'Your username',
+        'class': 'w-full py-4 px-6 rounded-xl'
+    }))
 
-    <form method="post" action=".">
-        {% csrf_token %}
+    email = forms.CharField(widget=forms.TextInput(attrs={
+        'placeholder': 'Your email',
+        'class': 'w-full py-4 px-6 rounded-xl'
+    }))
+
+    password1 = forms.CharField(widget=forms.TextInput(attrs={
+        'placeholder': 'Your password',
+        'class': 'w-full py-4 px-6 rounded-xl'
+    }))
+
+    password2 = forms.CharField(widget=forms.TextInput(attrs={
+        'placeholder': 'Your passwrod',
+        'class': 'w-full py-4 px-6 rounded-xl'
+    }))
